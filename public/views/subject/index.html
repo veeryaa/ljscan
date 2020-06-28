@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LJSCAN</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../style/style.css">
+</head>
+
+<body id="indexSubject">
+  <input type="hidden" id="usernames" value="">
+  <div class="container-fluid" style="width:100%;">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center" style="height: 50px; background-color: #78769d; ">
+        <p style="color: #ededf7; line-height: 50px;">Subject</p>
+      </div>
+      <div class="col-md-12 mt-2">
+        <div class="list-group">
+          <a href="#" id="btnSubject" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            &#43 Add a Subject
+          </a>
+          <div id="showSubject">
+          </div>
+          <a href="../../menu.html" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            &#8592 Back
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-edit" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Subject Edit</h4>
+          </div>
+          <div class="col-md-12 mt-2 mb-2">
+            <input type="hidden" id="modal-subjectid">
+            <input type="text" class="form-control" id="modal-subjectname">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnEditSubject">Submit</button>
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-delete" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Subject to be deleted: <span id="modal-subjectdelname"></span></h4>
+          </div>
+          <div class="col-md-12 mt-2 mb-2">
+            <p>To delete the data selected, please type
+              <span style="color: rgb(187, 54, 54)">'delete'</span> (without quotes) in the input box below!</p>
+            <input type="hidden" id="modal-subjectdelid">
+            <input type="text" class="form-control" id="modal-subjectC" placeholder="'delete'">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnDelSubject">Confirm</button>
+            <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <script type="text/javascript" src="../../js/index.js"></script>
+  <script>
+    $(document).on("click", "#btn-edit", function () {
+      var subjectName = $(this).data('subjectname');
+      var subjectID = $(this).data('subjectx');
+      $('#modal-edit').on('shown.bs.modal', function () {
+        $('#modal-subjectname').val(subjectName);
+        $('#modal-subjectid').val(subjectID);
+      })
+    });
+
+    $(document).on("click", "#btn-delete", function () {
+      var subjectName = $(this).data('subjectname');
+      var subjectID = $(this).data('subjectx');
+      $('#modal-delete').on('shown.bs.modal', function () {
+        $('#modal-subjectdelname').html(subjectName);
+        $('#modal-subjectdelid').val(subjectID);
+      })
+    });
+  </script>
+</body>
+
+</html>

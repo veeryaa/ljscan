@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LJSCAN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../style/style.css">
+</head>
+
+<body id="indexStudentList">
+  <input type="hidden" id="usernames" value="">
+  <div class="container-fluid" style="width:100%;">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center" style="height: 50px; background-color: #78769d; ">
+        <p style="color: #ededf7; line-height: 50px;">Classroom -> Student</p>
+      </div>
+      <div class="col-md-12 mt-2">
+        <div class="list-group">
+          <a href="#" id="btnStudent" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            &#43 Add a Student
+          </a>
+          <div id="showStudent">
+
+          </div>
+          <a id="totalRecord" style="color:#1d1b3d; background-color: rgb(227, 227, 241);"
+            class="list-group-item list-group-item-action"></a>
+          <a href="./" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            &#8592 Back
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-edit" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Classroom Edit</h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <input type="hidden" id="modal-studentid">
+          <input type="text" class="form-control" id="modal-studentname">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnEditStudent">Submit</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-delete" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Student to be deleted: <span id="modal-studentdelname"></span></h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <p>To delete the data selected, please type
+            <span style="color: rgb(187, 54, 54)">'delete'</span> (without quotes) in the input box below!</p>
+          <input type="hidden" id="modal-studentdelid">
+          <input type="text" class="form-control" id="modal-studentC" placeholder="'delete'">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnDelStudent">Confirm</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+      integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <script type="text/javascript" src="../../js/index.js"></script>
+    <script>
+      $(document).on("click", "#btn-edit", function () {
+        var studentName = $(this).data('studentname');
+        var studentID = $(this).data('studentx');
+        $('#modal-edit').on('shown.bs.modal', function () {
+          $('#modal-studentname').val(studentName);
+          $('#modal-studentid').val(studentID);
+        })
+      });
+
+      $(document).on("click", "#btn-delete", function () {
+        var studentName = $(this).data('studentname');
+        var studentID = $(this).data('studentx');
+        $('#modal-delete').on('shown.bs.modal', function () {
+          $('#modal-studentdelname').html(studentName);
+          $('#modal-studentdelid').val(studentID);
+        })
+      });
+    </script>
+</body>
+
+</html>

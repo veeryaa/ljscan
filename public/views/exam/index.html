@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LJSCAN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../style/style.css">
+</head>
+
+<body id="indexExam">
+  <input type="hidden" id="usernames" value="">
+  <div class="container-fluid" style="width:100%;">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center" style="height: 50px; background-color: #78769d; ">
+        <p style="color: #ededf7; line-height: 50px;">Exam</p>
+      </div>
+      <div class="col-md-12 mt-2">
+        <div class="list-group">
+          <a href="#" id="btnExam" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark"
+            data-toggle="modal" data-target="#modal-add">
+            &#43 Add an Exam
+          </a>
+          <div id="showExam">
+
+          </div>
+          <a href="../../menu.html" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            &#8592 Back
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-add" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Exam</h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <div class="form-group">
+            <label for="modal-examname">Exam Name</label>
+            <input type="text" class="form-control" id="modal-examname" placeholder="Exam Name">
+          </div>
+          <div class="form-group">
+            <label for="modal-examclass">Class</label>
+            <select id="modal-examclass" class="form-control"></select>
+          </div>
+          <div class="form-group">
+            <label for="modal-examsubject">Subject</label>
+            <select id="modal-examsubject" class="form-control"></select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnAddExam">Submit</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-answers" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Answer Key
+            <div>
+              <h6><span style="color: red;">Hint:</span>
+                Only A/B/C/D are allowed for the answer key</h6>
+            </div>
+          </h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <input type="hidden" id="examid">
+          <input type="number" min="1" step="1" class="form-control" id="total_q"
+            placeholder="Total Question (Maximum 40 Answer Key)">
+          <div class="row" id="section_key">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnAnswerKey">Submit</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-edit" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Answer Key
+            <div>
+              <h6><span style="color: red;">Hint:</span>
+                Only A/B/C/D are allowed for the answer key</h6>
+            </div>
+          </h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <input type="hidden" id="examids">
+          <h6>Total Question: <span id="total_qs" style="size: 24px; color: red;"></span>
+          </h6>
+          <div class="row" id="section_keys">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnEditKey">Submit</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../js/index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <script>
+    $(document).on("click", "#btn-answer", function () {
+      var examID = $(this).data('examx');
+      $('#modal-answers').on('shown.bs.modal', function () {
+        $('#examid').val(examID);
+      });
+
+      $('#modal-answers').on('hidden.bs.modal', function () {
+        document.getElementById('section_key').innerHTML = '';
+        document.getElementById('total_q').value = '';
+      });
+    });
+
+    const totalQ = document.getElementById('total_q');
+    totalQ.addEventListener('input', function () {
+      document.getElementById('section_key').innerHTML = '';
+      if (totalQ.value <= 40) {
+        for (let i = 1; i <= totalQ.value; i++) {
+          document.getElementById('section_key').innerHTML +=
+            `<div class="col-md-2 mt-2"><label for="q${i}">${i}</label>
+            <input type="text" id="q${i}" class="form-control">
+            </div>`;
+        }
+      }
+    });
+
+    $(document).on("click", "#btn-edit", function () {
+      var examIDs = $(this).data('examx');
+      var dataQ = $(this).data('totalqs');
+      var qKey = $(this).data('qkey');
+
+      $('#modal-edit').on('shown.bs.modal', function () {
+        var qKeyEach = qKey.split(',');
+        $('#examids').val(examIDs);
+        $('#total_qs').text(dataQ);
+        document.getElementById('section_keys').innerHTML = '';
+        if (totalQ.value <= 40) {
+          for (let i = 1; i <= dataQ; i++) {
+            document.getElementById('section_keys').innerHTML +=
+              `<div class="col-md-2 mt-2"><label for="q${i}">${i}</label>
+              <input type="text" maxlength='1' pattern="[ABCD]" id="qe${i}" class="form-control inputan" value="${qKeyEach[i - 1]}">
+              </div>`;
+          }
+        }
+        let inputan = document.querySelectorAll('.inputan');
+        inputan.forEach((element, index) => {
+          element.addEventListener('keypress', (e) => {
+            if (e.which === 65 || e.which === 66 || e.which === 67 || e.which === 68) {
+
+            } else if (e.which === 97 || e.which === 98 || e.which === 99 || e.which === 100) {
+
+            } else {
+              e.preventDefault();
+            }
+          })
+        });
+      })
+
+      $('#modal-edit').on('hidden.bs.modal', function () {
+        document.getElementById('section_keys').innerHTML = '';
+      })
+
+
+    });
+  </script>
+</body>
+
+</html>

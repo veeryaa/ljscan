@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LJSCAN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../style/style.css">
+</head>
+
+<body id="indexExamStudent">
+  <input type="hidden" id="usernames" value="">
+  <div class="container-fluid" style="width:100%;">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center" style="height: 50px; background-color: #78769d; ">
+        <p style="color: #ededf7; line-height: 50px;">Exam</p>
+      </div>
+      <div class="col-md-12 mt-2">
+        <div class="list-group">
+          <li href="#" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark"
+            data-toggle="modal" data-target="#modal-add">
+            Select student to scan the image
+          </li>
+          <div id="showExamStudent">
+
+          </div>
+          <a href="./index.html" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            &#8592 Back
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-scan" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Image Scanning
+          </h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <input type="hidden" id="modal-studentid">
+          <div class="form-group">
+            <label for="modal-studentname">Student Name:</label>
+            <input type="text" class="form-control mb-2" id="modal-studentname" disabled>
+          </div>
+          <li id="lbl_capture" class="list-group-item list-group-item-action">
+            <p>Please select the proper image to examine the answers (jpeg/jpg/png) only!</p>
+            <input type="file" id="btnCaptureImage" accept=".png, .jpeg, .jpg" capture="environment" />
+          </li>
+          <li id="forbuttonUpload" class="list-group-item list-group-item-action">
+            <button class="btn btn-dark" id="btnUploadImage" type="submit">Upload Image</button>
+          </li>
+          <li id="lbl_progress" class="list-group-item list-group-item-action">
+            <div class="progress">
+              <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%">
+              </div>
+            </div>
+          </li>
+          <div id="showPaper" class="d-flex justify-content-center"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-auth" id="btnSubmitScan">Submit</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-editljk" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title"><span id="theStudent"></span>'s Answer
+          </h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <input type="hidden" id="modal-estudentid">
+          <div class="form-group">
+            <label for="modal-studentname">Student Name:</label>
+            <input type="text" class="form-control mb-2" id="modal-estudentname" disabled>
+          </div>
+          <div class="form-group">
+            Image link: <a id="urlLink" href="" target="_blank">Click here</a>
+          </div>
+          <div id="showEditPaper" class="row"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" id="btnHighlight">Highlight</button>
+          <button type="button" class="btn btn-auth" id="btnUpdateAnswer">Update</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="modal-delete" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Answer to be deleted: <span id="modal-studentdelname"></span></h4>
+        </div>
+        <div class="col-md-12 mt-2 mb-2">
+          <p>To delete the data selected, please type
+            <span style="color: rgb(187, 54, 54)">'delete'</span> (without quotes) in the input box below!</p>
+          <input type="hidden" id="modal-studentidExam">
+          <input type="text" class="form-control" id="modal-studentAnsC" placeholder="'delete'">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-auth" data-dismiss="modal" id="btnDeleteAnswer">Confirm</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../js/index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+  </script>
+  <script>
+    $(document).on("click", "#btn-scan", function () {
+      var studentID = $(this).data('studentx');
+      var studentName = $(this).data('studentname');
+
+      $('#modal-scan').on('shown.bs.modal', function () {
+        $('#modal-studentid').val(studentID);
+        $('#modal-studentname').val(studentName);
+      });
+
+      $('#modal-scan').on('hidden.bs.modal', function () {
+        $('#image').remove();
+        $('#lbl_capture').css('display', 'block');
+        $('#forbuttonUpload').css('display', 'block');
+        $('#lbl_progress').css('display', 'block');
+        $('#progressBar').css('width', '0%');
+        $('#btnCaptureImage').val('');
+
+      })
+    });
+
+    $(document).on("click", "#btn-delete", function () {
+      var studentID = $(this).data('studentx');
+      $('#modal-delete').on('shown.bs.modal', function () {
+        $('#modal-studentidExam').val(studentID);
+      })
+    });
+
+    $(document).on("click", "#btn-edit", function () {
+      var estudentID = $(this).data('estudentx');
+      var estudentName = $(this).data('estudentname');
+      var eUrl = $(this).data('url');
+      var eAnswer = $(this).data('eanswer');
+
+      $('#modal-editljk').on('shown.bs.modal', function () {
+        $('#modal-estudentid').val(estudentID);
+        $('#modal-estudentname').val(estudentName);
+        $('#theStudent').text(estudentName);
+        var eachAnswer = eAnswer.split(',');
+        document.getElementById('showEditPaper').innerHTML = '';
+        document.getElementById('urlLink').href = eUrl;
+        for (let i = 0; i < eachAnswer.length - 1; i++) {
+          let number = i + 1;
+          document.getElementById('showEditPaper').innerHTML +=
+            `<div class="col-md-2 mt-2"><label for="ae${number}">${number}</label>
+              <input type="text" id="ae${number}" maxlength='1' class="form-control inputan" value="${eachAnswer[i]}">
+              </div>`;
+        }
+        let inputan = document.querySelectorAll('.inputan');
+        inputan.forEach((element, index) => {
+          element.addEventListener('keypress', (e) => {
+            if (e.which === 65 || e.which === 66 || e.which === 67 || e.which === 68) {
+
+            } else if (e.which === 97 || e.which === 98 || e.which === 99 || e.which === 100) {
+
+            } else {
+              e.preventDefault();
+            }
+          })
+        });
+      });
+
+      $('#modal-editljk').on('hidden.bs.modal', function () {
+        document.getElementById('showEditPaper').innerHTML = '';
+      });
+    })
+  </script>
+</body>
+
+</html>

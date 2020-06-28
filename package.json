@@ -1,0 +1,22 @@
+{
+  "name": "ljscan",
+  "version": "1.0.0",
+  "description": "Image Proecessing",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "firebase": "^7.14.1",
+    "firebase-tools": "^8.1.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}

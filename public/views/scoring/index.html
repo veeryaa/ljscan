@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LJSCAN</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../style/style.css">
+</head>
+
+<body id="indexScoring">
+  <input type="hidden" id="usernames" value="">
+  <div class="container-fluid" style="width:100%;">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center" style="height: 50px; background-color: #78769d; ">
+        <p style="color: #ededf7; line-height: 50px;">Scoring</p>
+      </div>
+      <div class="col-md-12 mt-2">
+        <div class="list-group">
+          <a href="#" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            Scoring
+          </a>
+          <li class="list-group-item list-group-item-action">Classroom:
+            <select name="" id="ddown_class">
+              <option value="kosong">Choose One ...</option>
+            </select>
+          </li>
+          </a>
+          <li id="lbl_student" class="list-group-item list-group-item-action" hidden='true'>Student
+            <select name="" id="ddown_student">
+
+            </select>
+          </li>
+          </a>
+          <li id="lbl_subject" class="list-group-item list-group-item-action" hidden='true'>Subject
+            <select name="" id="ddown_subject">
+
+            </select>
+          </li>
+          <li id="lbl_exam" class="list-group-item list-group-item-action" hidden='true'>Exam
+            <select name="" id="ddown_exam">
+              <option value="">Hello</option>
+            </select>
+          </li>
+          <li id="lbl_capture" class="list-group-item list-group-item-action"> Exam Paper
+            <input type="file" id="btnCapture" accept=".png, .jpeg, .jpg" capture="environment">
+          </li>
+          <li class="list-group-item list-group-item-action">
+            <button class="btn btn-dark" id="btnUpload" type="submit">Upload Image</button>
+          </li>
+          <li id="lbl_progress" class="list-group-item list-group-item-action" hidden='true'>
+            <div class="progress">
+              <div class="progress-bar" id="progressBar" role="progressbar" style="width: 0%">
+              </div>
+            </div>
+          </li>
+          <a href="../../menu.html" style="color: #ededf7;" class="list-group-item list-group-item-action bg-dark">
+            &#8592 Back
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../../js/index.js"></script>
+</body>
+
+</html>
