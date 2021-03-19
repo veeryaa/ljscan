@@ -7,5 +7,4 @@ OCR dengan bantuan dari teknologi Google Cloud Vision.
 * Google Firebase (Storage, Authentication, Functions)
 * Google Vision API
 * Webpack
-* Written in: Vanilla JS (Babel)
-
+* Written in: Vanilla JS 
