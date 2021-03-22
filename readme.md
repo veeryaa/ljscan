@@ -3,6 +3,8 @@ Sebuah aplikasi yang didedikasikan untuk mata kuliah Project Kekhususan Program 
 Jurusan TIK, Politeknik Negeri Jakarta. Aplikasi dapat melakukan ekstraksi data dari image ke dalam text menggunakan
 OCR dengan bantuan dari teknologi Google Cloud Vision.
 
+**Video**: https://www.youtube.com/watch?v=QRsG5bCxeIU
+
 # Bahasa & Teknologi Pendukung
 * Google Firebase (Storage, Authentication, Functions)
 * Google Vision API
